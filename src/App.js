@@ -1,18 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import "./App.css";
+// import Joke from "./Joke";
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      joke: [],
+    };
+  }
+
+  async componentDidMount() {
+    let result = await axios.get("https://icanhazdadjoke.com/", {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    this.setState({ joke: result.data });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Dad Joke</h1>
+        {/* <Joke joke={this.state.joke} /> */}
       </div>
     );
   }
