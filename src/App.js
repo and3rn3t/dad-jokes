@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
-// import Joke from "./Joke";
+import "./Joke/Joke.css";
+import Joke from "./Joke/Joke";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      joke: [],
+      joke: {},
     };
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   async componentDidMount() {
@@ -23,9 +25,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Dad Joke</h1>
-        {/* <Joke joke={this.state.joke} /> */}
+      <div>
+        <div class="header">
+          <h1>Dad Jokes</h1>
+        </div>
+        <div>
+          <Joke joke={this.state.joke} />
+        </div>
+        <br></br>
+        <br></br>
+        <button onClick={this.componentDidMount}>New Joke</button>
       </div>
     );
   }
